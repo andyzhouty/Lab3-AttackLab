@@ -5,3 +5,6 @@ core.*
 vgcore.*
 *.o
 .DS_Store
+
+# 助教提示文件，不随作业提交
+AGENTS.md
