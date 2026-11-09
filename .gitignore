@@ -8,3 +8,6 @@ vgcore.*
 
 # 助教提示文件，不随作业提交
 AGENTS.md
+
+# 生成的测试输入，可由 payload.py 重建
+payload.bin
