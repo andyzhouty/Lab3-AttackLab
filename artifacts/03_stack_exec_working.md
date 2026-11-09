@@ -30,7 +30,7 @@ objcopy -O binary --only-section=.text /tmp/sc3.o /tmp/sc3.bin
 xxd /tmp/sc3.bin
 
 gdb -batch -q -ex 'set pagination off' -ex 'break *input+94' \
-    -ex 'run < payload3.bin' -ex 'x/4i $rbp-0x10' -ex 'x/2gx $rbp' ./attack/dark-calc
+    -ex 'run < /tmp/pd.bin' -ex 'x/4i $rbp-0x10' -ex 'x/2gx $rbp' ./attack/dark-calc
 ```
 
 ## 4 待回答的问题
