@@ -104,7 +104,11 @@ cd attack && ./dark-calc-nx < /tmp/rop.bin
 
 ## 6 已确认结论
 
-做成一条写一条，附验证方式。
+- `dark-calc-nx` 的 `GNU_STACK` 标志为 `RW`，运行时栈段权限 `rw-p`，栈不可执行，前两关的机器码思路不适用。
+- `pop %rdi; ret` 位于 `0x401a33`，是 `__libc_csu_init` 尾部 `pop %r15; ret`（`0x401a32`）中跳过 REX 前缀后的两字节片段。
+- 链条为“片段地址、参数 4、`grade_eval`（`0x401978`）”三段，接在 24 字节填充之后，payload 共 49 字节。
+- 链条上不含任何栈地址，因此 ASLR 改变栈位置不影响成功率。
+- `payload_rop.py` 生成的 49 字节让程序打印 `Hope A will be your grade!`，随后以 `SIGSEGV` 结束。
 
 ## 7 备忘
 
