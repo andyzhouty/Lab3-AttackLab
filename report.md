@@ -1,5 +1,5 @@
 ---
-geometry: "a4paper, margin=14mm"
+geometry: "a4paper, margin=20mm"
 fontsize: 11pt
 mainfont: "Noto Serif CJK SC"
 sansfont: "Noto Sans CJK SC"
@@ -15,6 +15,8 @@ header-includes:
 # AttackLab 实验报告
 
 姓名：周天佑　学号：25300680065　最新更新日期：2026/11/11
+
+本报告分析课程提供的 `attack/dark-calc`、`attack/dark-calc-nx`、`attack/dark-log` 三个二进制与 `attack/malware` 脚本，按五个阶段推进。前两阶段用 GDB 观察 `input` 的栈帧与越界写入，并用五种长度的输入测量写入范围与终止方式；后三阶段利用同一处越界改写返回地址，依次完成执行外部脚本、调用程序自身的 `grade_eval`、在栈不可执行的程序上拼接 ROP 链条、以及在启用栈保护的程序上绕过 canary 检查。每一阶段的字节、寄存器读数与运行输出都来自实测，推断部分在正文中单独标注。
 
 ## 阶段一 dark-calc 的 input 栈帧与长度实验
 
